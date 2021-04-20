@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { CounterProperties } from '../counter-properties'
+import { Input } from '@angular/core';
 
 @Component({
   selector: 'app-counter',
@@ -6,15 +8,15 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./counter.component.css']
 })
 export class CounterComponent implements OnInit {
-  public counter_value: number = 0;
+  @Input() counter_data: CounterProperties;
 
   increment() {
-    this.counter_value ++;
+    this.counter_data.counter_value ++;
   }
 
   decrement(){
-    if(this.counter_value != 0) {
-      this.counter_value --;
+    if(this.counter_data.counter_value != 0) {
+      this.counter_data.counter_value --;
     }
   }
 
