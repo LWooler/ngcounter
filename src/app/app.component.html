@@ -1,3 +1,7 @@
 <div class="container text-center">
   <h1>{{ title }}</h1>
+  <button (click)="create()">Create</button>
+  <div *ngFor="let counter of counter_component_array">
+    <app-counter></app-counter>
+  </div>
 </div>
