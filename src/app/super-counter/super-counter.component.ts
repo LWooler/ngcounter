@@ -7,7 +7,7 @@ import { CounterProperties } from '../counter-properties';
   styleUrls: ['./super-counter.component.css']
 })
 export class SuperCounterComponent implements OnInit {
-  @Input() counter_data: CounterProperties;
+  @Input() counter_data: CounterProperties = new CounterProperties();
 
   increment() {
     this.counter_data.counter_value += 3;

@@ -8,7 +8,7 @@ import { Input } from '@angular/core';
   styleUrls: ['./counter.component.css']
 })
 export class CounterComponent implements OnInit {
-  @Input() counter_data: CounterProperties;
+  @Input() counter_data: CounterProperties = new CounterProperties();
 
   increment() {
     this.counter_data.counter_value ++;
