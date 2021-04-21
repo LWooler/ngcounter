@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { CounterProperties } from './counter-properties'
 
 @Component({
@@ -6,22 +6,12 @@ import { CounterProperties } from './counter-properties'
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent implements OnInit {
-
-  
-
+export class AppComponent {
   title = 'Angular Counter';
-  total_count: number = 0;
-  myTimer;
-
   public counter_array: CounterProperties[] = [];
   public super_counter_array: CounterProperties[] = [];
   public super_d_counter_array: CounterProperties[] = [];
   public colossal_counter_array: CounterProperties[] = [];
-
-  ngOnInit(): void {
-    this.startCount();
-  }
 
   create(){
     let counter: CounterProperties = new CounterProperties();
@@ -78,23 +68,5 @@ export class AppComponent implements OnInit {
 
   addItem(bool: boolean){
     if (bool) this.create();
-  }
-
-  startCount() {
-    this.myTimer = setInterval( () => {
-      this.total_count = 0;
-      this.counter_array.forEach(element => {
-        this.total_count += element.counter_value;
-      });
-      this.super_counter_array.forEach(element => {
-        this.total_count += element.counter_value;
-      });
-      this.super_d_counter_array.forEach(element => {
-        this.total_count += element.counter_value;
-      });
-      this.colossal_counter_array.forEach(element => {
-        this.total_count += element.counter_value;
-      });
-    }, 1000);
   }
 }
