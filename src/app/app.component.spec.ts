@@ -70,14 +70,19 @@ describe('AppComponent', () => {
     let scounter_comp = TestBed.createComponent(SuperCounterComponent);
     let scounter_elem = scounter_comp.debugElement.nativeElement.querySelector('.scounter-class');
     expect(getComputedStyle(scounter_elem).width).toEqual('400px');
-    // console.log(getComputedStyle(scounter_elem).width);
-
   });
 
-  // fit('should set banner background',()=>{
-  //   component.isOpen = true;
-  //   fixture.detectChanges();
-  //   const ele = fixture.debugElement.query(By.css('.open-banner')).nativeElement;
-  //   console.log(getComputedStyle(ele).backgroundImage);
-  // });
+  it('should have super d counter equal to sum of prev counters and prev counters will be removed from view', () => {
+    for(let i =0; i < 17; i++) {
+      app.create();
+    }
+    app.counter_array[1].counter_value = 5;
+    app.super_counter_array[0].counter_value = 5;
+    app.create();
+
+    expect(app.super_d_counter_array[0].counter_value).toEqual(10);
+    expect(app.counter_array.length).toEqual(0);
+    expect(app.super_counter_array.length).toEqual(0);
+  });
+    
 });
