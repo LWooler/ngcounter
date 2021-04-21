@@ -2,8 +2,8 @@
   <h1>{{ title }}</h1>
   <button (click)="create()">Create</button>
   
-  <div class="row">
-  <app-super-duper-counter *ngFor="let counter of super_d_counter_array" [counter_data]="counter"></app-super-duper-counter>
+  <div class="row" style>
+  <app-super-duper-counter *ngFor="let counter of super_d_counter_array" [counter_data]="counter" (newItemEvent)="addItem($event)"></app-super-duper-counter>
   <app-super-counter *ngFor="let s_counter of super_counter_array" [counter_data]="s_counter"></app-super-counter>
   <app-counter *ngFor="let counter of counter_array" [counter_data]="counter"></app-counter>
   </div>

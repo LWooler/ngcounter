@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { CounterProperties } from '../counter-properties';
 
 @Component({
@@ -8,6 +8,7 @@ import { CounterProperties } from '../counter-properties';
 })
 export class SuperDuperCounterComponent implements OnInit {
   @Input() counter_data: CounterProperties = new CounterProperties();
+  @Output() newItemEvent = new EventEmitter<boolean>();
 
   disabled: boolean = false;
   public myTimer;
@@ -18,8 +19,14 @@ export class SuperDuperCounterComponent implements OnInit {
   startCount() {
     this.myTimer = setInterval( () => {
       this.counter_data.counter_value ++;
-      // console.log(this.counter_data.counter_value)
+      if(this.counter_data.counter_value % 20 == 0){
+        //create new counter
+        this.generateCounter();
+      }
     }, 1000);
-    // this.counter_data.counter_value = myTimer;
+  }
+
+  generateCounter() {
+    this.newItemEvent.emit(true);
   }
 }

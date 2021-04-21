@@ -48,4 +48,8 @@ export class AppComponent {
     this.super_d_counter_array.push(counter1);
     this.super_counter_array = [];
   }
+
+  addItem(bool: boolean){
+    if (bool) this.create();
+  }
 }
