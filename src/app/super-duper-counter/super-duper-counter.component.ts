@@ -18,7 +18,7 @@ export class SuperDuperCounterComponent implements OnInit {
   startCount() {
     this.myTimer = setInterval( () => {
       this.counter_data.counter_value ++;
-      console.log(this.counter_data.counter_value)
+      // console.log(this.counter_data.counter_value)
     }, 1000);
     // this.counter_data.counter_value = myTimer;
   }

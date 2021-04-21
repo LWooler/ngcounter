@@ -1,4 +1,5 @@
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { ComponentFixture, discardPeriodicTasks, fakeAsync, flush, TestBed, tick, waitForAsync } from '@angular/core/testing';
+import 'zone.js/dist/zone-patch-rxjs-fake-async';
 
 import { SuperDuperCounterComponent } from './super-duper-counter.component';
 
@@ -29,13 +30,16 @@ describe('SuperDuperCounterComponent', () => {
     expect(componentHtml.querySelector('.button-start').innerHTML).toEqual('Start');
   });
 
-  it('super counter start at 0 and increment when start is clicked', () => {
+  it('super counter start at 0 and increment when start is clicked', fakeAsync(() => {
     expect(component.disabled).toBeFalsy();
     expect(componentHtml.querySelector('.count-val').innerHTML).toEqual('0')
     componentHtml.querySelector('.button-start').click();
+
+    tick(5000);
     fixture.detectChanges();
-    // setTimeout(() => { }, 500);
-    expect(componentHtml.querySelector('.count-val').innerHTML=='0').toBeFalsy();
+    expect(componentHtml.querySelector('.count-val').innerHTML).toEqual('5');
     expect(component.disabled).toBeTruthy();
-  });
+    flush();
+    discardPeriodicTasks()
+  }));
 });

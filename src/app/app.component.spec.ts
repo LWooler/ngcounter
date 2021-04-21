@@ -12,12 +12,16 @@ describe('AppComponent', () => {
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [
-        AppComponent
+        AppComponent,
+        CounterComponent,
+        SuperCounterComponent,
+        SuperDuperCounterComponent
       ],
     }).compileComponents();
     fixture = TestBed.createComponent(AppComponent);
     app = fixture.debugElement.componentInstance;
     appHtml = fixture.debugElement.nativeElement;
+    fixture.autoDetectChanges();
   }));
 
   // it('should create the app', () => {
@@ -49,28 +53,21 @@ describe('AppComponent', () => {
   });
 
   it('should have super counter equal to sum of prev 6 counters and 6 counters will be removed from view', () => {
-    app.create();
-    app.create();
-    app.create();
-    app.create();
-    app.create();
-    app.counter_array[0].counter_value = 1;
-    app.counter_array[1].counter_value = 5;
-    app.counter_array[2].counter_value = 1;
-    app.create();
+    for(let i=0;i < 5; i++){
+      app.create();
+      app.counter_array[i].counter_value = 1;
+    }
 
-    expect(app.super_counter_array[0].counter_value).toEqual(7);
+    app.create();
+    expect(app.super_counter_array[0].counter_value).toEqual(5);
     expect(app.counter_array.length).toEqual(0);
   });
 
   it('super counter should be twice the size of a regular counter', () => {
-    let counter_comp = TestBed.createComponent(CounterComponent);
-    let counter_elem = counter_comp.debugElement.nativeElement.querySelector('.counter-class');
-    expect(getComputedStyle(counter_elem).width).toEqual('200px');
+    let counter_elem = TestBed.createComponent(CounterComponent).debugElement.nativeElement.querySelector('.counter-class');
+    let scounter_elem = TestBed.createComponent(SuperCounterComponent).debugElement.nativeElement.querySelector('.scounter-class');
 
-    let scounter_comp = TestBed.createComponent(SuperCounterComponent);
-    let scounter_elem = scounter_comp.debugElement.nativeElement.querySelector('.scounter-class');
-    expect(getComputedStyle(scounter_elem).width).toEqual('400px');
+    expect(getComputedStyle(scounter_elem).width==getComputedStyle(counter_elem).width).toBeFalsy();
   });
 
   it('should have super d counter equal to sum of prev counters and prev counters will be removed from view', () => {
@@ -98,6 +95,15 @@ describe('AppComponent', () => {
     let sdcounter_color = getComputedStyle(sdcounter_elem).backgroundColor;
 
     expect(scounter_color==sdcounter_color).toBeFalsy();
+  });
+
+  it('should let me get selector of counter component objects', () => {
+    
+    app.create();
+    app.create();
+    fixture.detectChanges();
+    let incr_button_list = appHtml.querySelectorAll('.button-incr');
+    expect(incr_button_list.length).toEqual(2);
   });
     
 });
