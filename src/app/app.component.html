@@ -3,9 +3,11 @@
   <button (click)="create()">Create</button>
   
   <div class="row" style>
-  <app-super-duper-counter *ngFor="let counter of super_d_counter_array" [counter_data]="counter" (newItemEvent)="addItem($event)"></app-super-duper-counter>
-  <app-super-counter *ngFor="let s_counter of super_counter_array" [counter_data]="s_counter"></app-super-counter>
   <app-counter *ngFor="let counter of counter_array" [counter_data]="counter"></app-counter>
+  <app-super-counter *ngFor="let s_counter of super_counter_array" [counter_data]="s_counter"></app-super-counter>
+  <app-super-duper-counter *ngFor="let counter of super_d_counter_array" [counter_data]="counter" (newItemEvent)="addItem($event)"></app-super-duper-counter>
+  <app-colossal-counter *ngFor="let c_counter of colossal_counter_array" [counter_data]="c_counter" (newItemEvent)="addItem($event)"></app-colossal-counter>
+  
   </div>
   
 </div>
