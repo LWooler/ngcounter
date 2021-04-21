@@ -3,6 +3,7 @@ import { By } from '@angular/platform-browser';
 import { AppComponent } from './app.component';
 import { CounterComponent } from './counter/counter.component';
 import { SuperCounterComponent } from './super-counter/super-counter.component';
+import { SuperDuperCounterComponent } from './super-duper-counter/super-duper-counter.component';
 
 describe('AppComponent', () => {
   let fixture;
@@ -83,6 +84,20 @@ describe('AppComponent', () => {
     expect(app.super_d_counter_array[0].counter_value).toEqual(10);
     expect(app.counter_array.length).toEqual(0);
     expect(app.super_counter_array.length).toEqual(0);
+  });
+
+  it('super duper counter should be twice the size of a super counter and a different color', () => {
+    let scounter_comp = TestBed.createComponent(SuperCounterComponent);
+    let scounter_elem = scounter_comp.debugElement.nativeElement.querySelector('.scounter-class');
+    expect(getComputedStyle(scounter_elem).width).toEqual('400px');
+    let scounter_color = getComputedStyle(scounter_elem).backgroundColor;
+
+    let sdcounter_comp = TestBed.createComponent(SuperDuperCounterComponent);
+    let sdcounter_elem = sdcounter_comp.debugElement.nativeElement.querySelector('.sdcounter-class');
+    expect(getComputedStyle(sdcounter_elem).width).toEqual('800px');
+    let sdcounter_color = getComputedStyle(sdcounter_elem).backgroundColor;
+
+    expect(scounter_color==sdcounter_color).toBeFalsy();
   });
     
 });

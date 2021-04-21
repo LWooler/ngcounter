@@ -8,13 +8,18 @@ import { CounterProperties } from '../counter-properties';
 })
 export class SuperDuperCounterComponent implements OnInit {
   @Input() counter_data: CounterProperties = new CounterProperties();
-  visible: boolean = true;
 
-  startCount(){
-
-  }
+  disabled: boolean = false;
+  public myTimer;
 
   ngOnInit(): void {
   }
 
+  startCount() {
+    this.myTimer = setInterval( () => {
+      this.counter_data.counter_value ++;
+      console.log(this.counter_data.counter_value)
+    }, 1000);
+    // this.counter_data.counter_value = myTimer;
+  }
 }

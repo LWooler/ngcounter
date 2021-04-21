@@ -2,5 +2,5 @@
     <h1>{{counter_data.name}}</h1>
     <p class="count-val">{{counter_data.counter_value}}</p>
     <button class="button-incr" (click)="increment()">Increment</button>
-    <button class="button-decr" (click)="decrement()">Decrement</button>
+    <button class="button-decr" (click)="decrement()" [disabled]="counter_data.counter_value==0">Decrement</button>
 </div>

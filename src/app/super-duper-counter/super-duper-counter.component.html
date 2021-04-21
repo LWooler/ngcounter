@@ -1,5 +1,5 @@
 <div class="sdcounter-class">
     <h1>{{counter_data.name}}</h1>
     <p class="count-val">{{counter_data.counter_value}}</p>
-    <button class="button-start" (click)="startCount(); this.visible = false" *ngIf="this.visible">Start</button>
+    <button class="button-start" (click)="startCount(); disabled = true" [disabled]="disabled">Start</button>
 </div>
